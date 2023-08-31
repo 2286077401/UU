@@ -1,0 +1,28 @@
+<view class="section">
+  <picker mode="date" value="{{date}}" start="2023-01-01" end="2025-12-12" bindchange="bindDateChange">
+    <view class="picker">
+      {{date}} <span> ﹀</span>
+    </view>
+  </picker>
+</view>
+<view wx:if="{{recordList.length>0}}">
+
+  <view wx:for="{{recordList}}" wx:key="index">
+    <view class="itemtop">
+      <view class="time">
+        <!-- <view>开始 {{item.startTime}}</view> -->
+        <view>单号 {{item.order_id}}</view>
+        <view>时间 {{item.endTime}}</view>
+        <view>时长 {{item.duration}}</view>
+
+        <view>充电桩 {{item.station_id}}</view>
+      </view>
+      <view class="status" wx:if="{{item.status_tytpe==0}}">
+        <view>已完成 ›</view>
+        <view style="visibility: hidden;">占位</view>
+        <view>费用 ：<span class="price">￥{{item.cost}}</span>元</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else>暂无数据</view>

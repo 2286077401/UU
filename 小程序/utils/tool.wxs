@@ -1,0 +1,27 @@
+var tool = {
+  toFix: function (value) {
+    return value.toFixed(2) // 此处2为保留两位小数，保留几位小数，这里写几    
+  },
+  toStr: function (value) {
+    return value.toString()
+  },
+  toNum: function (value) {
+    return value.toNumber()
+  },
+  randomColor: function () {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  },
+  getColor: function (item) {
+    var str = item.status
+    return str
+  },
+
+
+}
+module.exports = {
+  toFix: tool.toFix,
+  toStr: tool.toStr,
+  toNum: tool.toNum,
+  randomColor: tool.randomColor,
+  getColor: tool.getColor,
+}

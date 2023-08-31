@@ -1,0 +1,36 @@
+/**app.wxss**/
+page{
+  --primary-color: #2ba245;  /* 主要颜色 */
+  --primary-color-56: #2ba24556;  /* 主要颜色 */
+  --secondary-color: #c49923;  /* 次要颜色 */
+  --success-color: #28a745;  /* 成功颜色 */
+  --btn-color: #007bff;  /* 按钮颜色 */
+  --error-color: #dc3545;  /* 错误颜色 */
+  --gray-color: #9e9e9e;   
+  /* 其他颜色变量 */
+}
+
+ .globalBg{
+   background-color: #2ba245;
+   color: white;
+ }
+ .globcolor{
+  color: #2ba245;
+ }
+ .navText{
+   color: #437dff;
+ }
+.container {
+  width: 95%; 
+  margin: 0 auto;
+} 
+.ell{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-spacing: normal;
+}
+.elip{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

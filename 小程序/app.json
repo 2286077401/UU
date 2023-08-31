@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/logs/logs",
+    "pages/scan/scan",
+    "pages/my/my",
+    "pages/record/record"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#007AFF",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "正在充电",
+        "iconPath": "/static/ing.png",
+        "selectedIconPath": "/static/ingActive.png"
+      },
+      {
+        "pagePath": "pages/scan/scan",
+        "text": "扫码充电",
+        "iconPath": "/static/scan.png",
+        "selectedIconPath": "/static/scanActive.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "个人中心",
+        "iconPath": "/static/user.png",
+        "selectedIconPath": "/static/userActive.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

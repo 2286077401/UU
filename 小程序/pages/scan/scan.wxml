@@ -1,0 +1,22 @@
+<view style="padding: 30rpx;">
+  <view wx:if="{{!status}}">
+    <view>方式一 ： 输入设备编号快开始充电</view>
+    <input type="text" placeholder="请输入设备号" value="{{deviceNum}}" />
+    <input type="text" placeholder="请输入插座号" value="{{socket}}" />
+    <button class="globalBg">确定</button>
+  </view>
+  <view wx:if="{{!status}}">
+    <view>方式二 ： 扫码充电</view>
+    <button bindtap="bigScan" class="globalBg">扫码充电</button>
+  </view>
+  <view class="container" wx:if="{{status}}">
+    <view class="time">{{ hours }}:{{ minutes }}:{{ seconds }}</view>
+    <view class="buttons">
+      <!-- <button bindtap="stopTimer">停止充电</button> -->
+      <button bindtap="resetTimer">停止充电</button>
+    </view>
+
+  </view>
+  <view wx:if="{{status}}" class="topBox">当前正在充电 设备号<view class="devBox">{{deviceNum}}</view>
+  </view>
+</view>

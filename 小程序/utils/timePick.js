@@ -1,0 +1,121 @@
+function withData(param) {
+  return param < 10 ? '0' + param : '' + param;
+}
+
+function getLoopArray(start, end) {
+  var start = start || 0;
+  var end = end || 1;
+  var array = [];
+  for (var i = start; i <= end; i++) {
+    array.push(withData(i));
+  }
+  return array;
+}
+
+function getMonthDay(year, month) {
+  var flag = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0),
+    array = null;
+
+  switch (month) {
+    case '01':
+    case '03':
+    case '05':
+    case '07':
+    case '08':
+    case '10':
+    case '12':
+      array = getLoopArray(1, 31)
+      break;
+    case '04':
+    case '06':
+    case '09':
+    case '11':
+      array = getLoopArray(1, 30)
+      break;
+    case '02':
+      array = flag ? getLoopArray(1, 29) : getLoopArray(1, 28)
+      break;
+    default:
+      array = '月份格式不正确，请重新输入！'
+  }
+  return array;
+}
+
+function getNewDateArry() {
+  // 当前时间的处理
+  var newDate = new Date();
+  var year = withData(newDate.getFullYear()),
+    mont = withData(newDate.getMonth() + 1),
+    date = withData(newDate.getDate()),
+    hour = withData(newDate.getHours()),
+    minu = withData(newDate.getMinutes()),
+    seco = withData(newDate.getSeconds());
+
+  return [year, mont, date, hour, minu, seco];
+}
+
+function dateTimePicker(startYear, endYear, date) {
+  // 返回默认显示的数组和联动数组的声明
+  var dateTime = [],
+    dateTimeArray = [
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ];
+  var start = startYear || 1978;
+  var end = endYear || 2100;
+  // 默认开始显示数据
+  var defaultDate = date ? [...date.split(' ')[0].split('-'), ...date.split(' ')[1].split(':')] : getNewDateArry();
+  // 处理联动列表数据
+  /*年月日 时分秒*/
+  dateTimeArray[0] = getLoopArray(start, end);
+  dateTimeArray[1] = getLoopArray(1, 12);
+  dateTimeArray[2] = getMonthDay(defaultDate[0], defaultDate[1]);
+  dateTimeArray[3] = getLoopArray(0, 23);
+  dateTimeArray[4] = getLoopArray(0, 59);
+  dateTimeArray[5] = getLoopArray(0, 59);
+
+  dateTimeArray.forEach((current, index) => {
+    dateTime.push(current.indexOf(defaultDate[index]));
+  });
+
+  return {
+    dateTimeArray: dateTimeArray,
+    dateTime: dateTime
+  }
+}
+const getTime = (() => {
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth() > 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1); // 月份从0开始，需要加1
+  var day = now.getDate() < 10 ? '0' + now.getDate() : now.getDate();
+  var hours = now.getHours() < 10 ? '0' + now.getHours() : now.getHours();
+  var minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
+  var seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds();
+  return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+})
+
+const timeDiffFn = ((startTime, endTime) => {
+  if (!startTime || !endTime) {
+    return '00:00:00'
+  }
+
+  // 计算时间差（单位：毫秒）
+  // var timeDiff = endTime.getTime() - startTime.getTime();
+  console.log(startTime, endTime)
+  var timeDiff = new Date(endTime).getTime() - new Date(startTime).getTime();
+
+  var hours = Math.floor(timeDiff / (1000 * 60 * 60));
+  var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  return hours + ':' + minutes + ':' + seconds
+})
+module.exports = {
+  dateTimePicker: dateTimePicker,
+  getMonthDay: getMonthDay,
+  getTime,
+  timeDiffFn
+}

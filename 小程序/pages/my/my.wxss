@@ -1,0 +1,65 @@
+Page {
+  background-color: rgba(226, 226, 226, 0.63);
+  padding-top: 20rpx;
+}
+.textBox{
+  width: 100%;
+  text-align: center;
+  
+}
+.loginBtn{ 
+  color: white;
+}
+.contents {
+  background-color: white;
+  width: calc(100% - 40rpx);
+  margin: 0 auto;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  /* grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); */
+  gap: 20rpx;
+  padding: 40rpx 20rpx 40rpx 20rpx;
+}
+
+.menuBox { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.menuBox span {
+  margin: 0 auto;
+  display: inline-block;
+  font-size: 25rpx;
+  color: gray;
+}
+.menuBox image{
+  width: 50%;
+}
+.avatImg {
+  max-width: 100rpx;
+  max-height: 100rpx;
+  border-radius: 20rpx;
+}
+
+.topBox {
+  display: flex;
+  line-height: 100rpx;
+}
+
+.topRight,
+.topCenter {
+  flex: 1;
+}
+
+.topRight {
+  text-align: right;
+}
+
+.topCenter {
+  padding-left: 30rpx;
+}

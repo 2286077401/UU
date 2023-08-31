@@ -1,0 +1,68 @@
+<wxs module="tool" src='../../utils/tool.wxs'> </wxs>
+<view>
+  <view wx:if="{{status}}" class="topBoxB">当前正在充电 设备号<view class="devBox">{{recordList.station_id}}</view>
+  </view>
+  <view wx:else class="topBox">没有正在充电的订单，<span class="globcolor" bindtap="bigScan">立即扫码充电</span></view>
+  <view style="text-align: center;" wx:if="{{status}}">
+    <view class="time">{{ hours }}:{{ minutes }}:{{ seconds }}</view>
+    <!-- <button bindtap="stopTimer">停止充电</button> -->
+    <view class="comit" style="width: 80%;" bindtap="resetTimer">停止充电</view>
+  </view>
+
+  <view class="popup" wx:if="{{choseTime}}" bindtap="closepup"> </view>
+  <view class="itemBox" wx:if="{{choseTime}}">
+    <view class="deviceBox">
+      <view class="dev_left">
+        <span>{{chargeDetail.location}}</span>
+        <span class="text">电站编号： {{chargeDetail.id}}</span>
+      </view>
+      <view class="dev_right">
+        <view bindtap="getChargList">
+          <image src="../../static/problem.png" style="width: 30rpx;" mode="widthFix" />
+        </view>
+        <span>{{chargeDetail.station_name}}</span>
+      </view>
+    </view>
+    <view wx:if="{{showList}}">
+      <view class="container">
+        <view wx:for="{{colorList}}" wx:key="index" class="item">
+          <view class="dot" style="background-color: {{item.color}}"></view>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+
+      <view class="batterList">
+        <view bindtap="choseChaz" data-item="{{item}}" class="{{fromData.stationId == item.id?'batterListBoxAct':'batterListBox'}}" wx:for="{{chargList}}" wx:key="index" style="border:1rpx solid {{colorList[tool.getColor(item)].color}};">
+          <image src="../../static/problem.png" style="width: 30rpx;" mode="widthFix" />
+          <text style="font-size: 20rpx;">{{item.station_name}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="batterBox">
+        <view class="bat_left">
+          <view class="bat_left_box">
+            <image src="../../static/battery.png" style="height: 100rpx;" mode="heightFix" />
+            <view class="globcolor textBtr">空闲中...</view>
+          </view>
+        </view>
+        <view class="bat_right">
+          <view>
+            <view>账户余额</view>
+            <view class="ell">{{cardList.balance||'--'}}</view>
+          </view>
+          <button class="btn">充值</button>
+        </view>
+      </view>
+      <view class="timeBox">
+        <view class="{{choseIndex==item.id?'activeBtn elip':'timeBoxItem elip'}}" bindtap="chosTime" data-item="{{item}}" wx:for="{{typeList}}" wx:key="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="comit" bindtap="creatorder">
+        开始充电
+      </view>
+      <view class="textBox">服务费：1.00元/3小时 0-9999瓦</view>
+    </view>
+  </view>
+</view>
